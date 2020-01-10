@@ -1,0 +1,45 @@
+<html lang="es">
+    <head>
+        <title>Farmacias</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="autor" />
+        <meta name="description" content="descripción página" />
+        <meta name="robots" content="index,follow" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        
+        <script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+
+        <!-- Lo mismo que la linea anterior pero en local. Se recomienda la referencia web para tener la ultima actualización del plugin
+        <script src="js/leaflet.ajax.min.js"></script> 
+        -->
+        <!-- Las dos lineas sgtes es para buscar algo en el mapa -->
+        <script src="https://labs.easyblog.it/maps/leaflet-search/src/leaflet-search.js"></script>
+        <link rel="stylesheet" href="https://labs.easyblog.it/maps/leaflet-search/src/leaflet-search.css" />
+
+        <!-- Para colocar cluster de agrupamientos de farmacias -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+        
+        <link rel="stylesheet" href="css/estilos.css" />
+        <script src="js/mapabase.js"></script>
+        <!-- script de farmacias-->
+        <script src="js/farmacias.js"></script>
+
+        <script>       
+            function initMapaFarmacias(){
+                init(); 
+                addDatosFarmacias();            
+            }         
+        </script>
+    </head>
+    
+    <body onLoad="initMapaFarmacias()">
+        <div class="titulo">Buscador de farmacias</div>
+        <div id="map">
+        </div>
+    </body>
+    
+    </html>
