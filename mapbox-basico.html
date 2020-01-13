@@ -34,8 +34,50 @@
             });
             map.addControl(new mapboxgl.AttributionControl({compact: true}));
             map.addControl(new mapboxgl.NavigationControl());
+            map.addControl(new mapboxgl.GeolocateControl());
 
-        }
+            map.on('load', function () {
+                map.addSource("viasciclables_source", {
+                    type: "vector",
+                    url: "mapbox://azubarco.dbwjazyi" //poner mapbox://vuestro id
+                }); //fin map source
+
+                map.addLayer({
+                    id: "viasciclables",
+                    type: "line",
+                    source: "viasciclables_source",
+                    'source-layer': "VIES_CICLABLES-a0ro0h", //poner vuestro titulo capa
+                    paint:{
+                        'line-color':"#00ff00",
+                        "line-width":3
+                    }
+                });
+            });
+
+            map.on('click','viasciclables',function(e){
+
+                var text = "";
+                //console.info(e);
+                for (key in e.features[0].properties){
+
+                text += "<b>"+key+"</b>:"+e.features[0].properties[key]+"<br>";
+                }
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(text)
+                    .addTo(map);
+
+                });
+
+                map.on('mouseenter', 'viasciclables', function() {
+                map.getCanvas().style.cursor = 'pointer';                    
+                });
+
+                map.on('mouseleave', 'viasciclables', function() {
+                map.getCanvas().style.cursor = '';                    
+            });
+        
+        } //final init 
     </script>
 </head>
 
