@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Hibrido</title>
+    <title>Mi estilo</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css' rel='stylesheet' />
@@ -24,8 +24,7 @@
             mapboxgl.accessToken = '';
             var map = new mapboxgl.Map({
                 container: 'map',
-                //style: 'https://geoserveis.icgc.cat/contextmaps/hibrid.json',
-                style: 'https://geoserveis.icgc.cat/contextmaps/icgc.json',
+                style: 'https://azubarco.github.io/geoweb/datos/miestilo.json',
                 center: [2.16859, 41.3954],
                 zoom: 13,
                 hash: true,
@@ -37,7 +36,26 @@
             }));
             map.addControl(new mapboxgl.NavigationControl());
 
-            
+            map.on('load', function () {
+                map.addSource("carrils-bici", {
+                    type: "geojson",
+                    data: "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/california-counties.geojson"
+                }); //fin map source
+
+                map.addLayer({
+                    id: "carrils-bici-layer",
+                    type: "line",
+                    source: "carrils-bici",
+                    layout: {
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    paint: {
+                        "line-color": "#FF0000",
+                        "line-width": 3
+                    }
+                }); //fin add layers
+            }); //Fin load mapa
 
 
         }
